@@ -11,21 +11,23 @@
 get_prob <- function(data_path, 
                      data_name){
   
-  prob_df <- read_delim(file.path(data_path, data_name), col_types = cols(), col_names=F, delim="\t") %>% 
+  data <- read_delim(file.path(data_path, data_name), col_types = cols(), col_names=F, delim="\t") %>% 
     tibble::rowid_to_column("y")
   
   # Remove X from column names
-  colnames(prob_df) <- c("y",paste(seq_len(ncol(prob_df))))
+  colnames(data) <- c("y",paste(seq_len(ncol(data))))
   
   # From wide to long format
-  prob_df <- pivot_longer(prob_df, 
+  data <- pivot_longer(data, 
                           -y, 
                           names_to = 'x', 
                           values_to ='z')
   
-  prob_df$x <- as.numeric(prob_df$x)
+  data <- data %>% 
+    relocate(x,y,z) %>% 
+    mutate(across(.cols = everything(), as.numeric))
   
-  return(prob_df)
+  return(data)
   
 }
 

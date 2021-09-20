@@ -22,18 +22,21 @@ cut_prob <- function(data,
       mutate(z = replace(z, z < cut_threshold, 0))
   }
   
+  data <- data %>% 
+    relocate(x,y,z) %>% 
+    mutate(across(.cols = everything(), as.numeric))
+  
   return(data)
 }
 
 #' Smooth function
 #' @param data Sample data from get_prob() function
 #' @export
-smooth_prob <- function(data) {
+smooth_prob <- function(data, fac = 3) {
   
   r <- rasterFromXYZ(data)
-  r <- t(flip(flip(r, 1),2))
-  r <- disaggregate(r,3)
-  r <- focal(r, w= matrix(1,3,3), mean, pad=T)
+  r <- disaggregate(r,fac)
+  r <- focal(r, w = matrix(1,fac,fac), mean, pad = T)
   
   data <- as.data.frame(as.matrix(flip(r,2))) %>% 
     tibble::rowid_to_column("y")
@@ -47,9 +50,11 @@ smooth_prob <- function(data) {
                        names_to = 'x', 
                        values_to ='z')
   
-  data$x <- as.numeric(data$x)
+  data <- data %>% 
+    relocate(x,y,z) %>% 
+    mutate(across(.cols = everything(), as.numeric))
   
-  data$smooth <- TRUE
+  data$smooth <- fac
   
   return(data)
 }
@@ -71,7 +76,7 @@ flip_prob <- function(data,
     flip_dir = 'x'
   }
   
-  rasterFromXYZ(data) -> r
+  r <- rasterFromXYZ(data) ->
   
   data <- as.data.frame(as.matrix(flip(r,flip_dir))) %>% 
     tibble::rowid_to_column("y")
@@ -85,7 +90,9 @@ flip_prob <- function(data,
                        names_to = 'x', 
                        values_to ='z')
   
-  data$x <- as.numeric(data$x)
+  data <- data %>% 
+    relocate(x,y,z) %>% 
+    mutate(across(.cols = everything(), as.numeric))
   
   return(data)
 }
@@ -138,7 +145,8 @@ subset_rect <- function(data, x1, x2, y1, y2) {
     dplyr::select(-y_rescaled, -x_rescaled) %>% 
     mutate(x = x - min(x),
            y = y - min(y),
-           z = z)
+           z = z) %>% 
+    mutate(across(.cols = everything(), as.numeric))
   
   return(data)
 }
@@ -184,7 +192,9 @@ subset_line <- function(data, x1, x2, y1, y2) {
     dplyr::select(x_rescaled,y_rescaled,z) %>% 
     mutate(x = x_rescaled,
            y = y_rescaled,
-           z = z)
+           z = z) %>% 
+    mutate(across(.cols = everything(), as.numeric))
+  
   
   r <- rasterFromXYZ(rescaled_data)
   lines <- spLines(rbind(c(x1,y1), c(x2,y2)))
