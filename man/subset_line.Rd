@@ -10,5 +10,8 @@ subset_line(data, x1, x2, y1, y2)
 \item{data}{Sample data from get_prob() function}
 }
 \description{
-Subset line
+Unfortunately R does not yet provide an option to manually subset ggplots by mouse select.
+This function allows the user to define two points between which a subset line will be created.
+Input points are on a relative scale 0-100 rather than on an absolute
+scale to make it easier to select the desired area.
 }

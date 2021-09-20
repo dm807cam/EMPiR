@@ -3,7 +3,7 @@
 \docType{data}
 \name{moonlight}
 \alias{moonlight}
-\title{Moonlight colour palette}
+\title{Moonlight color palette}
 \format{
 An object of class \code{character} of length 5.
 }
@@ -11,6 +11,6 @@ An object of class \code{character} of length 5.
 moonlight
 }
 \description{
-Moonlight colour palette
+Moonlight color palette
 }
 \keyword{datasets}

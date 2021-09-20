@@ -39,7 +39,7 @@ check_std <- function(data){
 #' @export
 image_prob <- function(data, 
                        legend_name,
-                       palette,
+                       palette = contour,
                        scale_position = c('top_left', 
                                           'top_right', 
                                           'bottom_left', 

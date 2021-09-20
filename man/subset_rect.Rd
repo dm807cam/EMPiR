@@ -2,11 +2,7 @@
 % Please edit documentation in R/operate.R
 \name{subset_rect}
 \alias{subset_rect}
-\title{Subset rectangle
-Unfortunately R does not yet provide an option to manually subset ggplots by mouse select.
-We thus define two points between which a subset rectangle will be created.
-Input points are on a relative scale 0-100 rather than on an absolute
-scale to make it easier for the operator to select the desired area.}
+\title{Subset rectangle}
 \usage{
 subset_rect(data, x1, x2, y1, y2)
 }
@@ -14,9 +10,8 @@ subset_rect(data, x1, x2, y1, y2)
 \item{data}{Sample data from get_prob() function}
 }
 \description{
-Subset rectangle
 Unfortunately R does not yet provide an option to manually subset ggplots by mouse select.
-We thus define two points between which a subset rectangle will be created.
+This function allows the user to define two points between which a subset rectangle will be created.
 Input points are on a relative scale 0-100 rather than on an absolute
-scale to make it easier for the operator to select the desired area.
+scale to make it easier to select the desired area.
 }

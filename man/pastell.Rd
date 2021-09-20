@@ -3,7 +3,7 @@
 \docType{data}
 \name{pastell}
 \alias{pastell}
-\title{Pastell colour palette}
+\title{Pastell color palette}
 \format{
 An object of class \code{character} of length 5.
 }
@@ -11,6 +11,6 @@ An object of class \code{character} of length 5.
 pastell
 }
 \description{
-Pastell colour palette
+Pastell color palette
 }
 \keyword{datasets}

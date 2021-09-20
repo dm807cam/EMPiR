@@ -4,16 +4,18 @@
 \alias{get_prob}
 \title{Import sample file}
 \usage{
-get_prob(data_path, data_name)
+get_prob(data_path, data_name, delim = "\\t")
 }
 \arguments{
 \item{data_path}{Path to file}
 
 \item{data_name}{File name}
+
+\item{delim}{Delimiter}
 }
 \description{
 This function helps to import raw EMP data to EMPiR.
-Data must be an n by m matrix without header or row ID stored in a single .txt file.
+Data must be an n by m matrix without header or row ID stored in a single file.
 }
 \examples{
 get_prob('path/to/file', 'awesome_file.txt')

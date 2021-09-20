@@ -4,16 +4,22 @@
 \alias{image_prob}
 \title{Plot raster}
 \usage{
-image_prob(data, legend_name, palette, scale_location, beam_size)
+image_prob(
+  data,
+  legend_name,
+  palette = contour,
+  scale_position = c("top_left", "top_right", "bottom_left", "bottom_right", "none"),
+  beam_size
+)
 }
 \arguments{
 \item{data}{Sample data from get_prob() function}
 
 \item{legend_name}{Legend title. Useful to indicate sample name, element and units.}
 
-\item{palette}{Select colour palette.}
+\item{palette}{Select color palette.}
 
-\item{scale_location}{Position of the scale bar}
+\item{scale_position}{Position of the scale bar}
 
 \item{beam_size}{Size of the beam used to calculate true size from pixel.}
 }

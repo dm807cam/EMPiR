@@ -4,10 +4,12 @@
 \alias{smooth_prob}
 \title{Smooth function}
 \usage{
-smooth_prob(data)
+smooth_prob(data, fac = 3)
 }
 \arguments{
 \item{data}{Sample data from get_prob() function}
+
+\item{fac}{Smoothing factor.}
 }
 \description{
 Smooth function
