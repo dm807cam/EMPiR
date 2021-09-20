@@ -31,6 +31,7 @@ cut_prob <- function(data,
 smooth_prob <- function(data) {
   
   r <- rasterFromXYZ(data)
+  r <- t(flip(flip(r, 1),2))
   r <- disaggregate(r,3)
   r <- focal(r, w= matrix(1,3,3), mean, pad=T)
   
@@ -38,7 +39,7 @@ smooth_prob <- function(data) {
     tibble::rowid_to_column("y")
   
   # Remove X from column names
-  colnames(data) <- c("y",paste(1:(ncol(data)-1)))
+  colnames(data) <- c("y",paste(seq_len(ncol(data)-1)))
   
   # From wide to long format
   data <- pivot_longer(data, 
@@ -76,7 +77,7 @@ flip_prob <- function(data,
     tibble::rowid_to_column("y")
   
   # Remove X from column names
-  colnames(data) <- c("y",paste(1:(ncol(data)-1)))
+  colnames(data) <- c("y",paste(seq_len(ncol(data)-1))))
   
   # From wide to long format
   data <- pivot_longer(data, 
