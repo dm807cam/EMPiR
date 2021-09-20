@@ -160,8 +160,7 @@ subset_rect <- function(data, x1, x2, y1, y2) {
     labs(fill='counts') +
     scale_x_continuous(expand = c(0, 0)) +
     scale_y_continuous(expand = c(0, 0)) +
-    scale_fill_gradientn(colors = colr,
-                         values = c(0,0.1,0.2,0.4,0.6,0.7,0.8,1), 
+    scale_fill_gradientn(colors = contrast,
                          na.value = "black") +
     geom_rect(aes(xmin=x1, xmax=x2, ymin=y1, ymax=y2), fill=NA, colour="red", size=1) 
   
@@ -220,8 +219,7 @@ subset_line <- function(data, x1, x2, y1, y2) {
     coord_fixed() +
     scale_x_continuous(expand = c(0, 0)) +
     scale_y_continuous(expand = c(0, 0)) +
-    scale_fill_gradientn(colors = colr,
-                         values = c(0,0.1,0.2,0.4,0.6,0.7,0.8,1), 
+    scale_fill_gradientn(colors = contrast,
                          na.value = "black") +
     annotate("segment", x = x1, xend = x2, y = y1, yend = y2, colour="red", size=1) 
   
