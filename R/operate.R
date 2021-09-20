@@ -40,6 +40,7 @@ cut_prob <- function(data,
 
 
 #' Smooth function
+#' 
 #' @param data Sample data from get_prob() function
 #' @param fac Smoothing factor.
 #' @export
