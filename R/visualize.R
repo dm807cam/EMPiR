@@ -51,7 +51,7 @@ image_prob <- function(data,
       geom_raster(aes(fill = z)) +
       theme_empir() +
       coord_fixed() +
-      labs(fill=legend_unit) +
+      labs(fill=legend_name) +
       scale_x_continuous(expand = c(0, 0)) +
       scale_y_continuous(expand = c(0, 0)) +
       scale_fill_gradientn(colors = palette, na.value = "black")
@@ -133,7 +133,7 @@ image_prob <- function(data,
       geom_raster(aes(fill = z)) +
       theme_empir() +
       coord_fixed() +
-      labs(fill=legend_unit) +
+      labs(fill=legend_name) +
       scale_x_continuous(expand = c(0, 0)) +
       scale_y_continuous(expand = c(0, 0)) +
       scale_fill_gradientn(colors = palette, na.value = "black") +
