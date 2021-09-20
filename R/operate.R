@@ -77,7 +77,7 @@ flip_prob <- function(data,
     tibble::rowid_to_column("y")
   
   # Remove X from column names
-  colnames(data) <- c("y",paste(seq_len(ncol(data)-1))))
+  colnames(data) <- c("y",paste(seq_len(ncol(data)-1)))
   
   # From wide to long format
   data <- pivot_longer(data, 
