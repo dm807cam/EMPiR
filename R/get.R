@@ -15,7 +15,7 @@ get_prob <- function(data_path,
     tibble::rowid_to_column("y")
   
   # Remove X from column names
-  colnames(prob_df) <- c("y",paste(1:ncol(prob_df)))
+  colnames(prob_df) <- c("y",paste(seq_len(ncol(prob_df))))
   
   # From wide to long format
   prob_df <- pivot_longer(prob_df, 
@@ -56,7 +56,7 @@ get_std <- function(data_path,
       }
   
   # Remove X from column names
-  colnames(std_df) <- c("filename", paste(1:ncol(std_df)))
+  colnames(std_df) <- c("filename", paste(seq_len(ncol(std_df))))
   
   # From wide to long format
   std_df <- pivot_longer(std_df, 
@@ -90,7 +90,7 @@ get_bg <- function(data_path,
     ) %>% 
     unnest(file_contents)
   
-  colnames(bg_df) <- c("filename", paste(1:ncol(bg_df)))
+  colnames(bg_df) <- c("filename", paste(seq_len(ncol(bg_df))))
   
   B <- mean(as.matrix(dplyr::select(bg_df, -1)))
   return(B)

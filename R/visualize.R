@@ -38,13 +38,8 @@ check_std <- function(data){
 #' @export
 image_prob <- function(data, 
                        legend_name,
-                       palette = c('contrast,
-                                   moonshine,
-                                   pastell'),
-                       scale_location = c('top_left', 
-                                        'top_right', 
-                                        'bottom_left', 
-                                        'bottom_right'), 
+                       palette,
+                       scale_location,
                        beam_size) {
   
   if(missing(beam_size)) {
@@ -158,9 +153,7 @@ image_prob <- function(data,
 #' @param bins Bin size used in histogram
 #' @export
 hist_prob <- function(data, 
-                      palette = c('contrast,
-                                   moonshine,
-                                   pastell'),
+                      palette,
                       bins = 50){
   
   getPalette = colorRampPalette(palette)

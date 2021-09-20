@@ -4,14 +4,7 @@
 \alias{image_prob}
 \title{Plot raster}
 \usage{
-image_prob(
-  data,
-  legend_name,
- 
-    palette = c("contrast,\\n                                   moonshine,\\n                                   pastell"),
-  scale_location = c("top_left", "top_right", "bottom_left", "bottom_right"),
-  beam_size
-)
+image_prob(data, legend_name, palette, scale_location, beam_size)
 }
 \arguments{
 \item{data}{Sample data from get_prob() function}

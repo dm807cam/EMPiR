@@ -28,5 +28,6 @@ In the meanwhile, EMPiR can be installed directly from this Github
 repository using ‘devtools’.</br>
 `devtools::install_github('dm807cam/EMPiR')`</br> Please expect many
 substantial changes in the next weeks. The first release of a stable
-version is expected for the start of November, 2021.</br> To report a
-bug or a feature request please open a ticket or contact me by mail.
+version is expected for the start of November, 2021.</br></br> To report
+a bug or submit a feature request please open a ticket or contact me by
+mail.

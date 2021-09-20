@@ -190,7 +190,7 @@ subset_line <- function(data, x1, x2, y1, y2) {
   rline <- as.data.frame(raster::extract(r, lines)[[1]])
   
   data <- rline %>% 
-    mutate(n = 1:length(z))
+    mutate(n = seq_len(length(z)))
   
   return(data)
   
