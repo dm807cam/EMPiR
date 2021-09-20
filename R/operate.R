@@ -43,10 +43,11 @@ cut_prob <- function(data,
 #' @param data Sample data from get_prob() function
 #' @param fac Smoothing factor.
 #' @export
-smooth_prob <- function(data, fac = 3) {
+smooth_prob <- function(data, fac) {
   
   if(missing(fac)) {
     warning("No smoothing factor specififed. Standard factor of 3 used.")
+    fac = 3
   }
   
   # Convert data frame to raster and smooth raster

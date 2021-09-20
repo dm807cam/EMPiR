@@ -7,7 +7,7 @@
 image_prob(
   data,
   legend_name,
-  palette = contour,
+  palette,
   scale_position = c("top_left", "top_right", "bottom_left", "bottom_right", "none"),
   beam_size
 )

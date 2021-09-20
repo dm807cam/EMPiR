@@ -39,13 +39,15 @@ check_std <- function(data){
 #' @export
 image_prob <- function(data, 
                        legend_name,
-                       palette = contour,
+                       palette,
                        scale_position = c('top_left', 
                                           'top_right', 
                                           'bottom_left', 
                                           'bottom_right', 
                                           'none'),
                        beam_size) {
+  
+  if(missing(palette)) {palette = contrast}
   
   if(missing(beam_size) | scale_position == 'none') {
     warning('No scale bar can be plotted.')
