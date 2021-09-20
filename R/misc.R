@@ -67,12 +67,15 @@ theme_black = function(base_size = 12, base_family = "") {
 
 
 #' Contrast color palette
+#' @export
 contrast <- c('#000000','#0033ff','#0099ff','#7fff00','#ffff00','#ff9900','#ff0000','#ff004c')
 
 
 #' Moonlight color palette
+#' @export
 moonlight <- c('#4a4e4d', '#0e9aa7', '#3da4ab', '#f6cd61', '#fe8a71')
 
 
 #' Pastell color palette
+#' @export
 pastell <- c('#071e22', '#1d7874', '#679289', '#f4c095', '#ee2e31')
