@@ -50,6 +50,7 @@ cal_std <- function(data,
   return(c(A,B))
 }
 
+
 #' Calibrate sample
 #' 
 #' This function helps to calibrate a sample using the output of the cal_std() function

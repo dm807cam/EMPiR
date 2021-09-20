@@ -27,23 +27,28 @@ check_std <- function(data){
   return(data)
 }
 
+
 #' Plot raster
 #' 
 #' Main plot function.
 #' @param data Sample data from get_prob() function
 #' @param legend_name Legend title. Useful to indicate sample name, element and units. 
-#' @param palette Select colour palette. 
-#' @param scale_location Position of the scale bar
+#' @param palette Select color palette. 
+#' @param scale_position Position of the scale bar
 #' @param beam_size Size of the beam used to calculate true size from pixel. 
 #' @export
 image_prob <- function(data, 
                        legend_name,
                        palette,
-                       scale_location,
+                       scale_position = c('top_left', 
+                                          'top_right', 
+                                          'bottom_left', 
+                                          'bottom_right', 
+                                          'none'),
                        beam_size) {
   
-  if(missing(beam_size)) {
-    warning('Beam size was not provided. Could not plot scale bar.')
+  if(missing(beam_size) | scale_position == 'none') {
+    warning('No scale bar can be plotted.')
     
     p1 <- data %>% 
       dplyr::select(x,y,z) %>% 
@@ -59,11 +64,11 @@ image_prob <- function(data,
   
   if(!(missing(beam_size))) {
     
-    if(missing(scale_location)) {
+    if(missing(scale_position)) {
       scale_location = 'bottom_left'
     }
     
-    if(scale_location == 'top_left'){
+    if(scale_position == 'top_left'){
       sbar_y <- max(data$y)*0.95
       sbar_x_max <- max(data$x)*0.4
       sbar_x_min <- max(data$x)*0.1
@@ -79,7 +84,7 @@ image_prob <- function(data,
       sbar_text_pos <- max(data$y)*0.92
     }
     
-    if(scale_location == 'top_right'){
+    if(scale_position == 'top_right'){
       sbar_y <- max(data$y)*0.95
       sbar_x_max <- max(data$x)*0.9
       sbar_x_min <- max(data$x)*0.6
@@ -95,7 +100,7 @@ image_prob <- function(data,
       sbar_text_pos <- max(data$y)*0.92
     }
     
-    if(scale_location == 'bottom_left'){
+    if(scale_position == 'bottom_left'){
       sbar_y <- max(data$y)*0.05
       sbar_x_max <- max(data$x)*0.4
       sbar_x_min <- max(data$x)*0.1
@@ -111,7 +116,7 @@ image_prob <- function(data,
       sbar_text_pos <- max(data$y)*0.08
     }
     
-    if(scale_location == 'bottom_right'){
+    if(scale_position == 'bottom_right'){
       sbar_y <- max(data$y)*0.05
       sbar_x_max <- max(data$x)*0.9
       sbar_x_min <- max(data$x)*0.6
@@ -146,6 +151,7 @@ image_prob <- function(data,
   return(data)
 }
 
+
 #' Plot histogram 
 #' 
 #' @param data Sample data from get_prob() function
@@ -174,6 +180,7 @@ hist_prob <- function(data,
   return(p1)
 }
 
+
 #' Plot density function
 #' 
 #' @param data Sample data from get_prob() function
@@ -195,6 +202,7 @@ dens_prob <- function(data) {
   return(p1)
 }
 
+
 #' Plot line of subset
 #' 
 #' @param data Data from subset_line() function
@@ -210,4 +218,3 @@ plot_subline <- function(data){
   
   print(p1)
 }
-
