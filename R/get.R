@@ -42,7 +42,7 @@ get_prob <- function(data_path,
 #' Data must be an n by m matrix without header or row ID stored in individual .txt files.
 #' Please refer to the vignette for more details.
 #' @param data_path Path to file(s)
-#' @param data_string File name(s).
+#' @param data_string File name(s)
 #' @keywords get, import, standard
 #' @export
 #' @examples
@@ -88,7 +88,7 @@ get_std <- function(data_path,
 #' Data must be an n by m matrix without header or row ID stored in individual .txt files.
 #' Please refer to the vignette for more details.
 #' @param data_path Path to file(s)
-#' @param data_string File name(s).
+#' @param data_string File name(s)
 #' @keywords get, import, background
 #' @export
 #' @examples

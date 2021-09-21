@@ -9,9 +9,9 @@ cut_prob(data, type = c("fixed", "quant"), cut_threshold)
 \arguments{
 \item{data}{Sample data from get_prob() function}
 
-\item{type}{Fixed or quantile threshold.}
+\item{type}{Fixed or quantile threshold}
 
-\item{cut_threshold}{Defined threshold. Must be numeric.}
+\item{cut_threshold}{Defined threshold. Must be numeric}
 }
 \description{
 Remove all data points below a fixed or a quantile threshold.

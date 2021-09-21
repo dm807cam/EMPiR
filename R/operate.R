@@ -4,8 +4,8 @@
 #' This function is helpful to remove noise around sample edges.
 #' Please refer to the vignette for more details.
 #' @param data Sample data from get_prob() function
-#' @param type Fixed or quantile threshold.
-#' @param cut_threshold Defined threshold. Must be numeric.
+#' @param type Fixed or quantile threshold
+#' @param cut_threshold Defined threshold. Must be numeric
 #' @export
 cut_prob <- function(data, 
                      type=c('fixed', 
@@ -44,7 +44,7 @@ cut_prob <- function(data,
 #' Applies a raster smoothing function to reduce noise.
 #' Please refer to the vignette for more details.
 #' @param data Sample data from get_prob() function
-#' @param fac Smoothing factor.
+#' @param fac Smoothing factor
 #' @export
 smooth_prob <- function(data, fac) {
   
@@ -60,21 +60,21 @@ smooth_prob <- function(data, fac) {
   r <- flip(r,2)
   
   # Convert raster back to data frame
-  data <- as.data.frame(as.matrix(r)) %>% 
+  data <- as.data.frame(raster::as.matrix(r)) %>%
     tibble::rowid_to_column("y")
   
   # Remove non-numerical from column names
   colnames(data) <- c("y",paste(seq_len(ncol(data)-1)))
   
   # From wide to long format
-  data <- pivot_longer(data, 
-                       -y, 
-                       names_to = 'x', 
+  data <- pivot_longer(data,
+                       -y,
+                       names_to = 'x',
                        values_to ='z')
   
   # Sort data frame XYZ and make all columns numeric
-  data <- data %>% 
-    relocate(x,y,z) %>% 
+  data <- data %>%
+    relocate(x,y,z) %>%
     mutate(across(.cols = everything(), as.numeric))
   
   # Add column to data frame specifying smoothing factor
@@ -86,7 +86,7 @@ smooth_prob <- function(data, fac) {
 
 #' Flip function
 #' 
-#' Flip sample horizontally or vertically
+#' Flip sample horizontally or vertically.
 #' @param data Sample data from get_prob() function
 #' @param flip_dir Flip horizontally 'h' or vertically 'v'
 #' @export

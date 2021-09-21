@@ -12,5 +12,5 @@ flip_prob(data, flip_dir = c("h", "v"))
 \item{flip_dir}{Flip horizontally 'h' or vertically 'v'}
 }
 \description{
-Flip sample horizontally or vertically
+Flip sample horizontally or vertically.
 }

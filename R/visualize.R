@@ -32,10 +32,10 @@ check_std <- function(data){
 #' 
 #' Main plot function.
 #' @param data Sample data from get_prob() function
-#' @param legend_name Legend title. Useful to indicate sample name, element and units. 
-#' @param palette Select color palette. 
+#' @param legend_name Legend title. Useful to indicate sample name, element and units
+#' @param palette Select color palette 
 #' @param scale_position Position of the scale bar
-#' @param beam_size Size of the beam used to calculate true size from pixel. 
+#' @param beam_size Size of the beam used to calculate true size from pixel 
 #' @export
 image_prob <- function(data, 
                        legend_name,

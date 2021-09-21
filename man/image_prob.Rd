@@ -15,13 +15,13 @@ image_prob(
 \arguments{
 \item{data}{Sample data from get_prob() function}
 
-\item{legend_name}{Legend title. Useful to indicate sample name, element and units.}
+\item{legend_name}{Legend title. Useful to indicate sample name, element and units}
 
-\item{palette}{Select color palette.}
+\item{palette}{Select color palette}
 
 \item{scale_position}{Position of the scale bar}
 
-\item{beam_size}{Size of the beam used to calculate true size from pixel.}
+\item{beam_size}{Size of the beam used to calculate true size from pixel}
 }
 \description{
 Main plot function.

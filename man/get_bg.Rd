@@ -9,7 +9,7 @@ get_bg(data_path, data_string)
 \arguments{
 \item{data_path}{Path to file(s)}
 
-\item{data_string}{File name(s).}
+\item{data_string}{File name(s)}
 }
 \description{
 This function helps to import background files to EMPiR.

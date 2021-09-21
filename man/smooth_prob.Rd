@@ -9,7 +9,7 @@ smooth_prob(data, fac)
 \arguments{
 \item{data}{Sample data from get_prob() function}
 
-\item{fac}{Smoothing factor.}
+\item{fac}{Smoothing factor}
 }
 \description{
 Applies a raster smoothing function to reduce noise.
