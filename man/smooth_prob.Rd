@@ -12,5 +12,6 @@ smooth_prob(data, fac)
 \item{fac}{Smoothing factor.}
 }
 \description{
-Smooth function
+Applies a raster smoothing function to reduce noise.
+Please refer to the vignette for more details.
 }

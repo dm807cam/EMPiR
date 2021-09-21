@@ -41,6 +41,8 @@ cut_prob <- function(data,
 
 #' Smooth function
 #' 
+#' Applies a raster smoothing function to reduce noise.
+#' Please refer to the vignette for more details.
 #' @param data Sample data from get_prob() function
 #' @param fac Smoothing factor.
 #' @export
@@ -55,9 +57,10 @@ smooth_prob <- function(data, fac) {
   r <- rasterFromXYZ(data)
   r <- disaggregate(r,fac)
   r <- focal(r, w = matrix(1,fac,fac), mean, pad = T)
+  r <- flip(r,2)
   
   # Convert raster back to data frame
-  data <- as.data.frame(as.matrix(flip(r,2))) %>% 
+  data <- as.data.frame(as.matrix(r)) %>% 
     tibble::rowid_to_column("y")
   
   # Remove non-numerical from column names
@@ -108,7 +111,7 @@ flip_prob <- function(data, flip_dir=c('h','v')) {
     tibble::rowid_to_column("y")
   
   # Remove non-numerical from column names
-  colnames(data) <- c("y",paste(seq_len(ncol(data))))
+  colnames(data) <- c("y",paste(seq_len(ncol(data)-1)))
   
   # From wide to long format
   data <- pivot_longer(data, 
