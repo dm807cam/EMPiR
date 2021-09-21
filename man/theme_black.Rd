@@ -4,7 +4,7 @@
 \alias{theme_black}
 \title{Theme Black}
 \usage{
-theme_black(base_size = 12, base_family = "")
+theme_black()
 }
 \description{
 Theme Black

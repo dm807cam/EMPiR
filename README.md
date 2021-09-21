@@ -38,7 +38,9 @@ release of a stable version is expected for the start of November,
 
 ## Usage examples
 
-**(1) Specify path to sample data set.**
+EMPiR comes with an example data set of a recent study of mine on trace
+element concentration in the shell of the intertidal gastropod *Nucella
+lapillus*. <br/><br/> **(1) Specify path to sample data set.**
 
 ``` r
 path_to_sample_data <- system.file('extdata', package = 'EMPiR')
@@ -48,7 +50,7 @@ path_to_sample_data <- system.file('extdata', package = 'EMPiR')
 image\_prob().**
 
 ``` r
-# Import samplw data
+# Import sample data
 get_prob(data_path = path_to_sample_data,
          data_name = 'Sample_mg.txt') %>%
 

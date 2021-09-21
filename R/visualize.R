@@ -1,6 +1,7 @@
 #' Check standards
 #' 
 #' This function visualizes the standard files to help identify measurement session drifts. 
+#' @param data standard file import from get_std() function
 #' @export
 check_std <- function(data){
   
@@ -36,6 +37,7 @@ check_std <- function(data){
 #' @param palette Select color palette 
 #' @param scale_position Position of the scale bar
 #' @param beam_size Size of the beam used to calculate true size from pixel 
+#' @importFrom dplyr select
 #' @export
 image_prob <- function(data, 
                        legend_name,
@@ -48,12 +50,14 @@ image_prob <- function(data,
                        beam_size) {
   
   if(missing(palette)) {palette = contrast}
+  
+  if(missing(scale_position)) {scale_position = 'none'}
 
-  if(missing(beam_size) | scale_position == 'none') {
+  if(scale_position == 'none') {
     warning('No scale bar can be plotted.')
     
     p1 <- data %>% 
-      dplyr::select(x,y,z) %>% 
+      select(x,y,z) %>% 
       ggplot(aes(x, y)) +
       geom_raster(aes(fill = z)) +
       theme_empir() +
@@ -64,10 +68,10 @@ image_prob <- function(data,
       scale_fill_gradientn(colors = palette, na.value = "black")
   }
   
-  if(!(missing(beam_size)) & !(scale_position == 'none')) {
+  if(!(scale_position == 'none')) {
     
-    if(missing(scale_position)) {
-      scale_location = 'bottom_left'
+    if(missing(beam_size)) {
+      stop('Please specify beam size.')
     }
     
     if(scale_position == 'top_left'){
@@ -135,7 +139,7 @@ image_prob <- function(data,
     }
     
     p1 <- data %>% 
-      dplyr::select(x,y,z) %>% 
+      select(x,y,z) %>% 
       ggplot(aes(x, y)) +
       geom_raster(aes(fill = z)) +
       theme_empir() +
@@ -159,15 +163,17 @@ image_prob <- function(data,
 #' @param data Sample data from get_prob() function
 #' @param palette Select color palette
 #' @param bins Bin size used in histogram
+#' @importFrom dplyr select
 #' @export
 hist_prob <- function(data, 
                       palette,
                       bins = 50){
   
+  if(missing(palette)) {palette = contrast}
   getPalette = colorRampPalette(palette)
   
   p1 <- data %>% 
-    dplyr::select(x,y,z) %>% 
+    select(x,y,z) %>% 
     ggplot(aes(z, fill = cut(z, bins))) +
     geom_histogram(bins = bins, colour="grey70", position = 'identity') +
     theme_black() +
@@ -186,11 +192,12 @@ hist_prob <- function(data,
 #' Plot density function
 #' 
 #' @param data Sample data from get_prob() function
+#' @importFrom dplyr select
 #' @export
 dens_prob <- function(data) {
   
   p1 <- data %>% 
-    dplyr::select(x,y,z) %>% 
+    select(x,y,z) %>% 
     ggplot(aes(z)) +
     geom_density(colour="red") +
     theme_black() +

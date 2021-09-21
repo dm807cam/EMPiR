@@ -6,6 +6,9 @@
 \usage{
 check_std(data)
 }
+\arguments{
+\item{data}{standard file import from get_std() function}
+}
 \description{
 This function visualizes the standard files to help identify measurement session drifts.
 }

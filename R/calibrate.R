@@ -12,7 +12,7 @@ cal_std <- function(data,
                     cal){
   
   data_cal <- data.frame(cal) %>% 
-    tibble::rownames_to_column("std") %>% 
+    rownames_to_column("std") %>% 
     rename("std" = 1,
            "cal" = 2)
   

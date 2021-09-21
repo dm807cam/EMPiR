@@ -4,7 +4,7 @@
 \alias{theme_empir}
 \title{Theme EMPiR}
 \usage{
-theme_empir(base_size = 12, base_family = "")
+theme_empir()
 }
 \description{
 Theme EMPiR

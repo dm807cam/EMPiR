@@ -8,6 +8,14 @@ subset_rect(data, x1, x2, y1, y2)
 }
 \arguments{
 \item{data}{Sample data from get_prob() function}
+
+\item{x1}{Xmin}
+
+\item{x2}{Ymax}
+
+\item{y1}{Ymin}
+
+\item{y2}{Ymax}
 }
 \description{
 Unfortunately R does not yet provide an option to manually subset ggplots by mouse select.

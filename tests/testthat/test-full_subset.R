@@ -6,4 +6,7 @@ get_prob(data_path = path,
   smooth_prob() %>% 
   image_prob(legend_name = 'Sample (counts)',
              scale_position = 'bottom_left',
-             beam_size=6)
+             beam_size=6) %>% 
+  subset_rect(55,99,1,55) %>% 
+  subset_line(55,55,1,99) %>% 
+  plot_subline()

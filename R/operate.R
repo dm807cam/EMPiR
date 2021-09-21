@@ -6,6 +6,7 @@
 #' @param data Sample data from get_prob() function
 #' @param type Fixed or quantile threshold
 #' @param cut_threshold Defined threshold. Must be numeric
+#' @importFrom dplyr select
 #' @export
 cut_prob <- function(data, 
                      type=c('fixed', 
@@ -20,13 +21,13 @@ cut_prob <- function(data,
   
   if(type == 'quant') {
     data <- data %>% 
-      dplyr::select(x,y,z) %>% 
+      select(x,y,z) %>% 
       mutate(z = replace(z, z < quantile(filter(data,z > 0)$z, prob = cut_threshold), 0))
   }
   
   if(type == 'fixed') {
     data <- data %>% 
-      dplyr::select(x,y,z) %>% 
+      select(x,y,z) %>% 
       mutate(z = replace(z, z < cut_threshold, 0))
   }
   
@@ -45,6 +46,8 @@ cut_prob <- function(data,
 #' Please refer to the vignette for more details.
 #' @param data Sample data from get_prob() function
 #' @param fac Smoothing factor
+#' @importFrom raster extract
+#' @importFrom raster as.matrix
 #' @export
 smooth_prob <- function(data, fac) {
   
@@ -60,8 +63,8 @@ smooth_prob <- function(data, fac) {
   r <- flip(r,2)
   
   # Convert raster back to data frame
-  data <- as.data.frame(raster::as.matrix(r)) %>%
-    tibble::rowid_to_column("y")
+  data <- as.data.frame(as.matrix(r)) %>%
+    rowid_to_column("y")
   
   # Remove non-numerical from column names
   colnames(data) <- c("y",paste(seq_len(ncol(data)-1)))
@@ -89,6 +92,7 @@ smooth_prob <- function(data, fac) {
 #' Flip sample horizontally or vertically.
 #' @param data Sample data from get_prob() function
 #' @param flip_dir Flip horizontally 'h' or vertically 'v'
+#' @importFrom raster as.matrix
 #' @export
 flip_prob <- function(data, flip_dir=c('h','v')) {
   
@@ -108,7 +112,7 @@ flip_prob <- function(data, flip_dir=c('h','v')) {
   
   # Convert data frame to raster and smooth raster
   data <- as.data.frame(as.matrix(r)) %>% 
-    tibble::rowid_to_column("y")
+    rowid_to_column("y")
   
   # Remove non-numerical from column names
   colnames(data) <- c("y",paste(seq_len(ncol(data)-1)))
@@ -135,6 +139,11 @@ flip_prob <- function(data, flip_dir=c('h','v')) {
 #' Input points are on a relative scale 0-100 rather than on an absolute
 #' scale to make it easier to select the desired area.
 #' @param data Sample data from get_prob() function
+#' @param x1 Xmin
+#' @param x2 Ymax
+#' @param y1 Ymin
+#' @param y2 Ymax
+#' @importFrom dplyr select
 #' @export
 subset_rect <- function(data, x1, x2, y1, y2) {
   
@@ -157,7 +166,7 @@ subset_rect <- function(data, x1, x2, y1, y2) {
   
   # Plot rescaled data 
   p1 <- data %>% 
-    dplyr::select(x_rescaled,y_rescaled,z) %>% 
+    select(x_rescaled,y_rescaled,z) %>% 
     ggplot(aes(x_rescaled,y_rescaled)) +
     geom_raster(aes(fill = z)) +
     theme_empir() +
@@ -176,7 +185,7 @@ subset_rect <- function(data, x1, x2, y1, y2) {
              x_rescaled <= x2 &
              y_rescaled >= y1 &
              y_rescaled <= y2) %>% 
-    dplyr::select(-y_rescaled, -x_rescaled) %>% 
+    select(-y_rescaled, -x_rescaled) %>% 
     mutate(x = x - min(x),
            y = y - min(y),
            z = z) %>% 
@@ -193,6 +202,12 @@ subset_rect <- function(data, x1, x2, y1, y2) {
 #' Input points are on a relative scale 0-100 rather than on an absolute
 #' scale to make it easier to select the desired area.
 #' @param data Sample data from get_prob() function
+#' @param x1 Xmin
+#' @param x2 Ymax
+#' @param y1 Ymin
+#' @param y2 Ymax
+#' @importFrom dplyr select
+#' @importFrom raster extract
 #' @export
 subset_line <- function(data, x1, x2, y1, y2) {
   
@@ -215,7 +230,7 @@ subset_line <- function(data, x1, x2, y1, y2) {
   
   # Plot rescaled data 
   p1 <- data %>% 
-    dplyr::select(x_rescaled,y_rescaled,z) %>% 
+    select(x_rescaled,y_rescaled,z) %>% 
     ggplot(aes(x_rescaled,y_rescaled)) +
     geom_raster(aes(fill = z)) +
     theme_empir() +
@@ -231,7 +246,7 @@ subset_line <- function(data, x1, x2, y1, y2) {
   
   # Create rescaled data frame
   rescaled_data <- data %>% 
-    dplyr::select(x_rescaled,y_rescaled,z) %>% 
+    select(x_rescaled,y_rescaled,z) %>% 
     mutate(x = x_rescaled,
            y = y_rescaled,
            z = z) %>% 
@@ -240,7 +255,7 @@ subset_line <- function(data, x1, x2, y1, y2) {
   # Convert data frame to raster and define spatial line
   r <- rasterFromXYZ(rescaled_data)
   lines <- spLines(rbind(c(x1,y1), c(x2,y2)))
-  rline <- as.data.frame(raster::extract(r, lines)[[1]])
+  rline <- as.data.frame(extract(r, lines)[[1]])
   
   # Add point ID to data frame
   data <- rline %>% 

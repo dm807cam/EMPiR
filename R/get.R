@@ -6,6 +6,8 @@
 #' @param data_name File name
 #' @param delim Delimiter
 #' @keywords get, import, sample  
+#' @importFrom readr read_delim
+#' @importFrom readr cols
 #' @export
 get_prob <- function(data_path, 
                      data_name, 
@@ -13,7 +15,7 @@ get_prob <- function(data_path,
   
   # Read data
   data <- read_delim(file.path(data_path, data_name), col_types = cols(), col_names=F, delim=delim) %>% 
-    tibble::rowid_to_column("y")
+    rowid_to_column("y")
   
   # Remove non-numerical from column names
   colnames(data) <- c("y",paste(seq_len(ncol(data))))
@@ -42,6 +44,9 @@ get_prob <- function(data_path,
 #' @param data_path Path to file(s)
 #' @param data_string File name(s)
 #' @keywords get, import, standard
+#' @importFrom dplyr select
+#' @importFrom readr read_delim
+#' @importFrom readr cols
 #' @export
 get_std <- function(data_path, 
                     data_string){
@@ -72,7 +77,7 @@ get_std <- function(data_path,
   
   # Assign standard and measurement order to data frame
   std_df$std <- vapply(strsplit(std_df$filename,"_"), `[`, 1, FUN.VALUE=character(1))
-  std_df <- dplyr::select(std_df, filename, std, everything())
+  std_df <- select(std_df, filename, std, everything())
   
   return(std_df)
 }
@@ -86,6 +91,9 @@ get_std <- function(data_path,
 #' @param data_path Path to file(s)
 #' @param data_string File name(s)
 #' @keywords get, import, background
+#' @importFrom dplyr select
+#' @importFrom readr read_delim
+#' @importFrom readr cols
 #' @export
 get_bg <- function(data_path, 
                    data_string){
@@ -101,7 +109,7 @@ get_bg <- function(data_path,
   colnames(bg_df) <- c("filename", paste(seq_len(ncol(bg_df))))
   
   # Calculate background (B) value
-  B <- mean(as.matrix(dplyr::select(bg_df, -1)))
+  B <- mean(as.matrix(select(bg_df, -1)))
   
   return(B)
 }

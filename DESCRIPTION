@@ -14,9 +14,14 @@ LazyData: false
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.2
 Depends:
-	tidyverse,
-	fs,
-	raster
+	ggplot2,
+	dplyr,
+	purrr,
+	tidyr,
+	raster,
+	tibble
+Imports:
+  readr
 URL: https://github.com/dm807cam/EMPiR
 Suggests: 
     testthat (>= 3.0.0)
