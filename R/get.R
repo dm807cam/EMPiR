@@ -7,8 +7,6 @@
 #' @param delim Delimiter
 #' @keywords get, import, sample  
 #' @export
-#' @examples
-#' get_prob('path/to/file', 'awesome_file.txt')
 get_prob <- function(data_path, 
                      data_name, 
                      delim="\t"){
@@ -45,8 +43,6 @@ get_prob <- function(data_path,
 #' @param data_string File name(s)
 #' @keywords get, import, standard
 #' @export
-#' @examples
-#' get_prob('path/to/file', c('VG-2', 'Dolomite')) 
 get_std <- function(data_path, 
                     data_string){
   
@@ -91,8 +87,6 @@ get_std <- function(data_path,
 #' @param data_string File name(s)
 #' @keywords get, import, background
 #' @export
-#' @examples
-#' get_bg('path/to/file', 'Bg') 
 get_bg <- function(data_path, 
                    data_string){
   
