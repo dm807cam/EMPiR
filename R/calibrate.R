@@ -5,19 +5,11 @@
 #' @param data standard file import from get_std() function
 #' @param B B parameter from get_bg() function. If B is not supplied, it will be estimated by the function.
 #' @param cal known element concentrations for standards
-#' @param current EMP current in microampere used in the measurement session
-#' @param dwell_time Spot dwell time
-#' @param accumulations Number of accumulations
 #' @keywords calibrate
 #' @export
 cal_std <- function(data,
                     B,
-                    cal,
-                    current,
-                    dwell_time,
-                    accumulations){
-  
-  It <- current*dwell_time*accumulations
+                    cal){
   
   data_cal <- data.frame(cal) %>% 
     tibble::rownames_to_column("std") %>% 
@@ -26,7 +18,7 @@ cal_std <- function(data,
   
   data <- data %>% 
     group_by(std) %>% 
-    summarise(counts = mean(counts, na.rm=T)/It)
+    summarise(counts = mean(counts, na.rm=T))
   
   data <- inner_join(data, data_cal, by="std")
   
@@ -35,7 +27,7 @@ cal_std <- function(data,
   A <- as.numeric(coef(lm_data)[2])
   
   if(!(missing(B))) {
-    B <- B / It
+    B <- B
   } else {
     B <- as.numeric(coef(lm_data)[1])
   }
@@ -49,8 +41,18 @@ cal_std <- function(data,
 #' This function helps to calibrate a sample using the output of the cal_std() function
 #' @param data Sample data from get_prob() function
 #' @param cal Calibration data from cal_std() function
+#' @param current EMP current in microampere used in the measurement session
+#' @param dwell_time Spot dwell time
+#' @param accumulations Number of accumulations
 #' @export
-cal_prob <- function(data, cal) {
-  data$z <- cal[1] + cal[2] * data$z
+cal_prob <- function(data, 
+                     cal,
+                     current,
+                     dwell_time,
+                     accumulations) {
+  
+  It <- current*dwell_time*accumulations
+  
+  data$z <- (cal[2] * It + data$z) / (cal[1] * It)
   return(data)
 }

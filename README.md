@@ -3,7 +3,7 @@ EMPiR
 
 ### Electron MicroProbe in R
 
-<img src="man/figures/logo.png" align="right"  height="200" />
+<img src='man/figures/logo.png' align='right'  height='200' />
 
 [![](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 [![](https://img.shields.io/github/last-commit/dm807cam/EMPiR.svg)](https://github.com/dm807cam/EMPiR/commits/main)
@@ -60,20 +60,20 @@ image_prob(legend_name = 'counts',
 
 ![](README_files/figure-gfm/unnamed-chunk-1-1.png)<!-- -->
 
-    ## # A tibble: 16,900 × 3
+    ## # A tibble: 592,000 × 3
     ##        x     y     z
     ##    <dbl> <dbl> <dbl>
-    ##  1     1     1    71
-    ##  2     2     1    56
-    ##  3     3     1    54
-    ##  4     4     1    48
-    ##  5     5     1    53
-    ##  6     6     1    47
-    ##  7     7     1    70
-    ##  8     8     1    48
-    ##  9     9     1    64
-    ## 10    10     1    60
-    ## # … with 16,890 more rows
+    ##  1     1     1     0
+    ##  2     2     1     0
+    ##  3     3     1     0
+    ##  4     4     1     0
+    ##  5     5     1     0
+    ##  6     6     1     0
+    ##  7     7     1     0
+    ##  8     8     1     0
+    ##  9     9     1     0
+    ## 10    10     1     0
+    ## # … with 591,990 more rows
 
 **(3) Now, let’s try to chain multiple operations together.**
 
@@ -96,7 +96,7 @@ image_prob(legend_name = 'counts',
 
 ![](README_files/figure-gfm/unnamed-chunk-2-1.png)<!-- -->
 
-    ## # A tibble: 152,100 × 4
+    ## # A tibble: 5,328,000 × 4
     ##        x     y     z smooth
     ##    <dbl> <dbl> <dbl>  <dbl>
     ##  1     1     1    NA      3
@@ -109,7 +109,7 @@ image_prob(legend_name = 'counts',
     ##  8     8     1    NA      3
     ##  9     9     1    NA      3
     ## 10    10     1    NA      3
-    ## # … with 152,090 more rows
+    ## # … with 5,327,990 more rows
 
 **(4) And last but not least, let’s look at a full calibration
 example.**
@@ -117,46 +117,46 @@ example.**
 ``` r
 # Import background data
 B <- get_bg(data_path = path_to_sample_data,
-            data_string = "Bg")
+            data_string = 'Bg')
 
 # Import standards
 cal <- get_std(data_path = path_to_sample_data,
-               data_string = c("VG-2", "Dolomite")) %>% 
-               
+               data_string = c('VG-2', 'Dolomite')) %>% 
+  
 # Calculate calibration value from standard data               
-cal_std(cal = c("VG-2" = 4.05, 
-                "Dolomite" = 13.29),
-        B = B,
-        current = 0.1004,
-        dwell_time = 20,
-        accumulations = 8)
+cal_std(cal = c('VG-2' = 4.05, 
+                'Dolomite' = 13.29),
+        B = B)
 
 # Import sample data
 get_prob(data_path = path_to_sample_data,
-         data_name = "Sample_Mg.txt") %>%
+         data_name = 'Sample_Mg.txt') %>%
          
 # Calibrate sample data         
-cal_prob(cal) %>% 
+cal_prob(cal,
+        current = 0.1004,
+        dwell_time = 20,
+        accumulations = 8) %>% 
 
 # Plot sample data
-image_prob(legend_name = 'Sr [wt %]',
+image_prob(legend_name = 'Mg [conc %]',
            scale_position = 'bottom_left',
            beam_size = 6) 
 ```
 
 ![](README_files/figure-gfm/unnamed-chunk-3-1.png)<!-- -->
 
-    ## # A tibble: 16,900 × 3
+    ## # A tibble: 592,000 × 3
     ##        x     y     z
     ##    <dbl> <dbl> <dbl>
-    ##  1     1     1  318.
-    ##  2     2     1  256.
-    ##  3     3     1  248.
-    ##  4     4     1  223.
-    ##  5     5     1  243.
-    ##  6     6     1  218.
-    ##  7     7     1  314.
-    ##  8     8     1  223.
-    ##  9     9     1  289.
-    ## 10    10     1  273.
-    ## # … with 16,890 more rows
+    ##  1     1     1 0.185
+    ##  2     2     1 0.185
+    ##  3     3     1 0.185
+    ##  4     4     1 0.185
+    ##  5     5     1 0.185
+    ##  6     6     1 0.185
+    ##  7     7     1 0.185
+    ##  8     8     1 0.185
+    ##  9     9     1 0.185
+    ## 10    10     1 0.185
+    ## # … with 591,990 more rows

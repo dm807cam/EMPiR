@@ -1,21 +1,23 @@
 ---
-title: "EMPiR"
+title: 'EMPiR'
 output: github_document
 ---
 
 ```{r load-packages, include=FALSE}
+devtools::document()
+devtools::install_local('../EMPiR')
 library(tidyverse)
 library(badger)
 library(EMPiR)
 ```
 
 ### Electron MicroProbe in R
-<img src="man/figures/logo.png" align="right"  height="200" />
+<img src='man/figures/logo.png' align='right'  height='200' />
 
-`r badge_lifecycle("experimental", "orange")`
-`r badge_last_commit("dm807cam/EMPiR")`
-`r badge_codefactor("dm807cam/EMPiR")`
-`r badge_github_actions("dm807cam/EMPiR")`
+`r badge_lifecycle('experimental', 'orange')`
+`r badge_last_commit('dm807cam/EMPiR')`
+`r badge_codefactor('dm807cam/EMPiR')`
+`r badge_github_actions('dm807cam/EMPiR')`
 
 **Author:** [Dennis Mayk](https://www.dmayk.de/)<br/>
 **License:** [AGPL-3](https://opensource.org/licenses/AGPL-3.0)<br/>
@@ -105,29 +107,29 @@ image_prob(legend_name = 'counts',
 ``` r
 # Import background data
 B <- get_bg(data_path = path_to_sample_data,
-            data_string = "Bg")
+            data_string = 'Bg')
 
 # Import standards
 cal <- get_std(data_path = path_to_sample_data,
-               data_string = c("VG-2", "Dolomite")) %>% 
-               
+               data_string = c('VG-2', 'Dolomite')) %>% 
+  
 # Calculate calibration value from standard data               
-cal_std(cal = c("VG-2" = 4.05, 
-                "Dolomite" = 13.29),
-        B = B,
-        current = 0.1004,
-        dwell_time = 20,
-        accumulations = 8)
+cal_std(cal = c('VG-2' = 4.05, 
+                'Dolomite' = 13.29),
+        B = B)
 
 # Import sample data
 get_prob(data_path = path_to_sample_data,
-         data_name = "Sample_Mg.txt") %>%
+         data_name = 'Sample_Mg.txt') %>%
          
 # Calibrate sample data         
-cal_prob(cal) %>% 
+cal_prob(cal,
+        current = 0.1004,
+        dwell_time = 20,
+        accumulations = 8) %>% 
 
 # Plot sample data
-image_prob(legend_name = 'Sr [wt %]',
+image_prob(legend_name = 'Mg [conc %]',
            scale_position = 'bottom_left',
            beam_size = 6) 
 ```
@@ -135,29 +137,29 @@ image_prob(legend_name = 'Sr [wt %]',
 ``` {r echo = F,message=FALSE, warning=FALSE}
 # Import background data
 B <- get_bg(data_path = path_to_sample_data,
-            data_string = "Bg")
+            data_string = 'Bg')
 
 # Import standards
 cal <- get_std(data_path = path_to_sample_data,
-               data_string = c("VG-2", "Dolomite")) %>% 
+               data_string = c('VG-2', 'Dolomite')) %>% 
   
 # Calculate calibration value from standard data               
-cal_std(cal = c("VG-2" = 4.05, 
-                "Dolomite" = 13.29),
-        B = B,
-        current = 0.1004,
-        dwell_time = 20,
-        accumulations = 8)
+cal_std(cal = c('VG-2' = 4.05, 
+                'Dolomite' = 13.29),
+        B = B)
 
 # Import sample data
 get_prob(data_path = path_to_sample_data,
-         data_name = "Sample_Mg.txt") %>%
+         data_name = 'Sample_Mg.txt') %>%
          
 # Calibrate sample data         
-cal_prob(cal) %>% 
+cal_prob(cal,
+        current = 0.1004,
+        dwell_time = 20,
+        accumulations = 8) %>% 
 
 # Plot sample data
-image_prob(legend_name = 'Sr [wt %]',
+image_prob(legend_name = 'Mg [conc %]',
            scale_position = 'bottom_left',
            beam_size = 6) 
 ```

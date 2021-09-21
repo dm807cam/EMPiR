@@ -4,7 +4,7 @@
 \alias{cal_std}
 \title{Prepare calibration data}
 \usage{
-cal_std(data, B, cal, current, dwell_time, accumulations)
+cal_std(data, B, cal)
 }
 \arguments{
 \item{data}{standard file import from get_std() function}
@@ -12,12 +12,6 @@ cal_std(data, B, cal, current, dwell_time, accumulations)
 \item{B}{B parameter from get_bg() function. If B is not supplied, it will be estimated by the function.}
 
 \item{cal}{known element concentrations for standards}
-
-\item{current}{EMP current in microampere used in the measurement session}
-
-\item{dwell_time}{Spot dwell time}
-
-\item{accumulations}{Number of accumulations}
 }
 \description{
 This function calculates the calibration parameters A and B.

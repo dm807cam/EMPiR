@@ -4,12 +4,18 @@
 \alias{cal_prob}
 \title{Calibrate sample}
 \usage{
-cal_prob(data, cal)
+cal_prob(data, cal, current, dwell_time, accumulations)
 }
 \arguments{
 \item{data}{Sample data from get_prob() function}
 
 \item{cal}{Calibration data from cal_std() function}
+
+\item{current}{EMP current in microampere used in the measurement session}
+
+\item{dwell_time}{Spot dwell time}
+
+\item{accumulations}{Number of accumulations}
 }
 \description{
 This function helps to calibrate a sample using the output of the cal_std() function

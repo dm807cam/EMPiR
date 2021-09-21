@@ -48,7 +48,7 @@ image_prob <- function(data,
                        beam_size) {
   
   if(missing(palette)) {palette = contrast}
-  
+
   if(missing(beam_size) | scale_position == 'none') {
     warning('No scale bar can be plotted.')
     

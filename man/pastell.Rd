@@ -5,7 +5,7 @@
 \alias{pastell}
 \title{Pastell color palette}
 \format{
-An object of class \code{character} of length 5.
+An object of class \code{character} of length 6.
 }
 \usage{
 pastell

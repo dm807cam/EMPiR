@@ -73,9 +73,9 @@ contrast <- c('#000000','#0033ff','#0099ff','#7fff00','#ffff00','#ff9900','#ff00
 
 #' Moonlight color palette
 #' @export
-moonlight <- c('#4a4e4d', '#0e9aa7', '#3da4ab', '#f6cd61', '#fe8a71')
+moonlight <- c('#000000','#4a4e4d', '#0e9aa7', '#3da4ab', '#f6cd61', '#fe8a71')
 
 
 #' Pastell color palette
 #' @export
-pastell <- c('#071e22', '#1d7874', '#679289', '#f4c095', '#ee2e31')
+pastell <- c('#000000','#071e22', '#1d7874', '#679289', '#f4c095', '#ee2e31')

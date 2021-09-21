@@ -5,7 +5,7 @@
 \alias{moonlight}
 \title{Moonlight color palette}
 \format{
-An object of class \code{character} of length 5.
+An object of class \code{character} of length 6.
 }
 \usage{
 moonlight
