@@ -16,9 +16,6 @@ This function helps to import standard files to EMPiR.
 Data must be an n by m matrix without header or row ID stored in individual .txt files.
 Please refer to the vignette for more details.
 }
-\examples{
-get_prob('path/to/file', c('VG-2', 'Dolomite')) 
-}
 \keyword{get,}
 \keyword{import,}
 \keyword{standard}

@@ -17,9 +17,6 @@ get_prob(data_path, data_name, delim = "\\t")
 This function helps to import raw EMP data to EMPiR.
 Data must be an n by m matrix without header or row ID stored in a single file.
 }
-\examples{
-get_prob('path/to/file', 'awesome_file.txt')
-}
 \keyword{get,}
 \keyword{import,}
 \keyword{sample}

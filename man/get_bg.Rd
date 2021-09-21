@@ -16,9 +16,6 @@ This function helps to import background files to EMPiR.
 Data must be an n by m matrix without header or row ID stored in individual .txt files.
 Please refer to the vignette for more details.
 }
-\examples{
-get_bg('path/to/file', 'Bg') 
-}
 \keyword{background}
 \keyword{get,}
 \keyword{import,}
