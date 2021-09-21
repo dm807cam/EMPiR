@@ -15,6 +15,7 @@ This package provides pipe-friendly framework to import, calibrate and evaluate 
 `r badge_lifecycle("experimental", "orange")`
 `r badge_last_commit("dm807cam/EMPiR")`
 `r badge_codefactor("dm807cam/EMPiR")`
+`r badge_github_actions("dm807cam/EMPiR")`
 
 ## Usage
 ```

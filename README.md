@@ -12,6 +12,8 @@ AGPL-v3](https://img.shields.io/badge/license-AGPL--v3-blue.svg)](https://cran.r
 [![](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 [![](https://img.shields.io/github/last-commit/dm807cam/EMPiR.svg)](https://github.com/dm807cam/EMPiR/commits/main)
 [![CodeFactor](https://www.codefactor.io/repository/github/dm807cam/EMPiR/badge)](https://www.codefactor.io/repository/github/dm807cam/EMPiR)
+[![R build
+status](https://github.com/dm807cam/EMPiR/workflows/R-CMD-check/badge.svg)](https://github.com/dm807cam/EMPiR/actions)
 
 ## Usage
 
