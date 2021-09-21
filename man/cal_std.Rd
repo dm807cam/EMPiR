@@ -23,12 +23,4 @@ cal_std(data, B, cal, current, dwell_time, accumulations)
 This function calculates the calibration parameters A and B.
 Please refer to the vignette for more details.
 }
-\examples{
-cal_std(cal = c('VG-2' = 4.05, 
- 'Dolomite' = 13.29),
- B = B,
- current=0.1004,
- dwell_time = 20,
- accumulations = 8)
-}
 \keyword{calibrate}
