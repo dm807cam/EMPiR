@@ -108,7 +108,7 @@ flip_prob <- function(data, flip_dir=c('h','v')) {
     tibble::rowid_to_column("y")
   
   # Remove non-numerical from column names
-  colnames(data) <- c("y",paste(seq_len(ncol(data)-1)))
+  colnames(data) <- c("y",paste(seq_len(ncol(data))))
   
   # From wide to long format
   data <- pivot_longer(data, 
