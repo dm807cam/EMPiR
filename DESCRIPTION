@@ -8,7 +8,7 @@ Authors@R:
            email = "dm807@cam.ac.uk",
            comment = c(ORCID = "0000-0002-5017-1495"))
 Description: What the package does (one paragraph).
-License: `use_agpl3_license()`
+License: AGPL (>= 3)
 Encoding: UTF-8
 LazyData: false
 Roxygen: list(markdown = TRUE)

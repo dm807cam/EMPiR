@@ -54,6 +54,8 @@ cal_std <- function(data,
 #' Calibrate sample
 #' 
 #' This function helps to calibrate a sample using the output of the cal_std() function
+#' @param data Sample data from get_prob() function
+#' @param cal Calibration data from cal_std() function
 #' @export
 cal_prob <- function(data, cal) {
   data$z <- cal[1] + cal[2] * data$z

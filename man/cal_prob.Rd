@@ -6,6 +6,11 @@
 \usage{
 cal_prob(data, cal)
 }
+\arguments{
+\item{data}{Sample data from get_prob() function}
+
+\item{cal}{Calibration data from cal_std() function}
+}
 \description{
 This function helps to calibrate a sample using the output of the cal_std() function
 }
