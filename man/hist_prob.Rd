@@ -4,7 +4,7 @@
 \alias{hist_prob}
 \title{Plot histogram}
 \usage{
-hist_prob(data, palette, bins = 50)
+hist_prob(data, palette, bins = 50, return_fig = FALSE)
 }
 \arguments{
 \item{data}{Sample data from get_prob() function}
@@ -12,6 +12,8 @@ hist_prob(data, palette, bins = 50)
 \item{palette}{Select color palette}
 
 \item{bins}{Bin size used in histogram}
+
+\item{return_fig}{Logical specifying if a ggplot figure should be returned by the function instead of a data frame. Default is FALSE.}
 }
 \description{
 Plot histogram

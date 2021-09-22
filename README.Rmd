@@ -35,7 +35,7 @@ devtools::install_github('dm807cam/EMPiR')
 Please expect many substantial changes in the next weeks. The first release of a stable version is expected for the start of November, 2021.</br>
 
 ## Usage examples
-EMPiR comes with an example data set of a recent study of mine on trace element concentration in the shell of the intertidal gastropod *Nucella lapillus*. <br/><br/>
+EMPiR comes with an example data set from a recent study of mine on trace element concentration in the shell of the intertidal gastropod *Nucella lapillus*. <br/><br/>
 **(1) Specify path to sample data set.**
 ``` r
 path_to_sample_data <- system.file('extdata', package = 'EMPiR')
@@ -94,7 +94,7 @@ get_prob(data_path = path_to_sample_data,
 # Remove data points below threshold
 cut_prob('quant', 0.055) %>% 
 
-# Apply smoothing filter
+# Apply smoothing function
 smooth_prob() %>% 
 
 # Plot sample data         

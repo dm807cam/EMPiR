@@ -38,9 +38,9 @@ release of a stable version is expected for the start of November,
 
 ## Usage examples
 
-EMPiR comes with an example data set of a recent study of mine on trace
-element concentration in the shell of the intertidal gastropod *Nucella
-lapillus*. <br/><br/> **(1) Specify path to sample data set.**
+EMPiR comes with an example data set from a recent study of mine on
+trace element concentration in the shell of the intertidal gastropod
+*Nucella lapillus*. <br/><br/> **(1) Specify path to sample data set.**
 
 ``` r
 path_to_sample_data <- system.file('extdata', package = 'EMPiR')
@@ -62,7 +62,7 @@ image_prob(legend_name = 'counts',
 
 ![](README_files/figure-gfm/unnamed-chunk-1-1.png)<!-- -->
 
-    ## # A tibble: 592,000 × 3
+    ## # A tibble: 592,000 x 3
     ##        x     y     z
     ##    <dbl> <dbl> <dbl>
     ##  1     1     1     0
@@ -75,7 +75,7 @@ image_prob(legend_name = 'counts',
     ##  8     8     1     0
     ##  9     9     1     0
     ## 10    10     1     0
-    ## # … with 591,990 more rows
+    ## # ... with 591,990 more rows
 
 **(3) Now, let’s try to chain multiple operations together.**
 
@@ -98,7 +98,7 @@ image_prob(legend_name = 'counts',
 
 ![](README_files/figure-gfm/unnamed-chunk-2-1.png)<!-- -->
 
-    ## # A tibble: 5,328,000 × 4
+    ## # A tibble: 5,328,000 x 4
     ##        x     y     z smooth
     ##    <dbl> <dbl> <dbl>  <dbl>
     ##  1     1     1    NA      3
@@ -111,7 +111,7 @@ image_prob(legend_name = 'counts',
     ##  8     8     1    NA      3
     ##  9     9     1    NA      3
     ## 10    10     1    NA      3
-    ## # … with 5,327,990 more rows
+    ## # ... with 5,327,990 more rows
 
 **(4) And last but not least, let’s look at a full calibration
 example.**
@@ -148,7 +148,7 @@ image_prob(legend_name = 'Mg [conc %]',
 
 ![](README_files/figure-gfm/unnamed-chunk-3-1.png)<!-- -->
 
-    ## # A tibble: 592,000 × 3
+    ## # A tibble: 592,000 x 3
     ##        x     y     z
     ##    <dbl> <dbl> <dbl>
     ##  1     1     1 0.185
@@ -161,4 +161,4 @@ image_prob(legend_name = 'Mg [conc %]',
     ##  8     8     1 0.185
     ##  9     9     1 0.185
     ## 10    10     1 0.185
-    ## # … with 591,990 more rows
+    ## # ... with 591,990 more rows

@@ -37,6 +37,7 @@ check_std <- function(data){
 #' @param palette Select color palette 
 #' @param scale_position Position of the scale bar
 #' @param beam_size Size of the beam used to calculate true size from pixel 
+#' @param return_fig Logical specifying if a ggplot figure should be returned by the function instead of a data frame. Default is FALSE.
 #' @importFrom dplyr select
 #' @export
 image_prob <- function(data, 
@@ -47,7 +48,8 @@ image_prob <- function(data,
                                           'bottom_left', 
                                           'bottom_right', 
                                           'none'),
-                       beam_size) {
+                       beam_size,
+                       return_fig = FALSE) {
   
   if(missing(palette)) {palette = contrast}
   
@@ -154,7 +156,13 @@ image_prob <- function(data,
   }
   
   print(p1)
-  return(data)
+  
+  if(return_fig == TRUE){
+    return(p1)
+  } else {
+    return(data)
+  }
+  
 }
 
 
@@ -163,11 +171,13 @@ image_prob <- function(data,
 #' @param data Sample data from get_prob() function
 #' @param palette Select color palette
 #' @param bins Bin size used in histogram
+#' @param return_fig Logical specifying if a ggplot figure should be returned by the function instead of a data frame. Default is FALSE.
 #' @importFrom dplyr select
 #' @export
 hist_prob <- function(data, 
                       palette,
-                      bins = 50){
+                      bins = 50,
+                      return_fig = FALSE){
   
   if(missing(palette)) {palette = contrast}
   getPalette = colorRampPalette(palette)
@@ -185,7 +195,12 @@ hist_prob <- function(data,
     scale_fill_manual(values = getPalette(bins)) 
   
   print(p1)
-  return(p1)
+  
+  if(return_fig == TRUE){
+    return(p1)
+  } else {
+    return(data)
+  }
 }
 
 
@@ -193,8 +208,10 @@ hist_prob <- function(data,
 #' 
 #' @param data Sample data from get_prob() function
 #' @importFrom dplyr select
+#' @param return_fig Logical specifying if a ggplot figure should be returned by the function instead of a data frame. Default is FALSE.
 #' @export
-dens_prob <- function(data) {
+dens_prob <- function(data,
+                      return_fig = FALSE) {
   
   p1 <- data %>% 
     select(x,y,z) %>% 
@@ -208,7 +225,12 @@ dens_prob <- function(data) {
     scale_y_continuous(expand = c(0, 0)) 
   
   print(p1)
-  return(p1)
+  
+  if(return_fig == TRUE){
+    return(p1)
+  } else {
+    return(data)
+  }
 }
 
 

@@ -4,10 +4,12 @@
 \alias{dens_prob}
 \title{Plot density function}
 \usage{
-dens_prob(data)
+dens_prob(data, return_fig = FALSE)
 }
 \arguments{
 \item{data}{Sample data from get_prob() function}
+
+\item{return_fig}{Logical specifying if a ggplot figure should be returned by the function instead of a data frame. Default is FALSE.}
 }
 \description{
 Plot density function

@@ -9,7 +9,8 @@ image_prob(
   legend_name,
   palette,
   scale_position = c("top_left", "top_right", "bottom_left", "bottom_right", "none"),
-  beam_size
+  beam_size,
+  return_fig = FALSE
 )
 }
 \arguments{
@@ -22,6 +23,8 @@ image_prob(
 \item{scale_position}{Position of the scale bar}
 
 \item{beam_size}{Size of the beam used to calculate true size from pixel}
+
+\item{return_fig}{Logical specifying if a ggplot figure should be returned by the function instead of a data frame. Default is FALSE.}
 }
 \description{
 Main plot function.
