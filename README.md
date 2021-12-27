@@ -23,24 +23,23 @@ mail.**
 
 ## Install
 
-As of now, EMPiR is experimental and not available through CRAN. I plan
+As of now, EMPiR is in beta and not available through CRAN. I plan
 to release this package through CRAN once it reaches the first stable
 version. In the meanwhile, EMPiR can be installed for experimental usage
-directly from this Github repository using ‘devtools’.<br/>
+directly from this Github repository using ‘devtools’. 
+If you use EMPiR in your research or project please cite the package.<br/>
 
 ``` r
 devtools::install_github('dm807cam/EMPiR')
 ```
 
-Please expect many substantial changes in the next weeks. The first
-release of a stable version is expected for the start of November,
-2021.</br>
-
 ## Usage examples
 
 EMPiR comes with an example data set from a recent study of mine on
 trace element concentration in the shell of the intertidal gastropod
-*Nucella lapillus*. <br/><br/> **(1) Specify path to sample data set.**
+*Nucella lapillus*. <br/><br/> 
+
+**(1) Specify path to sample data set.**
 
 ``` r
 path_to_sample_data <- system.file('extdata', package = 'EMPiR')
