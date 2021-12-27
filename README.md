@@ -5,7 +5,7 @@ EMPiR
 
 <img src='man/figures/logo.png' align='right'  height='200' />
 
-[![](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
+[![](https://zenodo.org/badge/408476567.svg)](https://doi.org/10.5281/zenodo.5805676)
 [![](https://img.shields.io/github/last-commit/dm807cam/EMPiR.svg)](https://github.com/dm807cam/EMPiR/commits/main)
 [![CodeFactor](https://www.codefactor.io/repository/github/dm807cam/EMPiR/badge)](https://www.codefactor.io/repository/github/dm807cam/EMPiR)
 [![R build
