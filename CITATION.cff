@@ -1,0 +1,10 @@
+cff-version: 1.1.0-beta
+message: "If you use this software, please cite it as below."
+authors:
+  - family-names: Mayk
+    given-names: Dennis
+    orcid: https://orcid.org/0000-0002-5017-1495
+title: dm807cam/EMPiR: v.1.0.0-beta
+version: v.1.0.0-beta
+date-released: 2021-12-27
+            
