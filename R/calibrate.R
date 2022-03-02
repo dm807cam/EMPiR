@@ -5,9 +5,6 @@
 #' @param data standard file import from get_std() function
 #' @param B B parameter from get_bg() function. If B is not supplied, it will be estimated by the function.
 #' @param cal known element concentrations for standards
-#' @param current EMP current in µA used during the measurement session
-#' @param dwell_time Spot dwell time
-#' @param accumulations Number of accumulations
 #' @keywords calibrate
 #' @export
 cal_std <- function(data,
@@ -30,7 +27,7 @@ cal_std <- function(data,
   A <- as.numeric(coef(lm_data)[2])
   
   if(!(missing(B))) {
-    B <- B/It
+    B <- B
   } else {
     B <- as.numeric(coef(lm_data)[1])
   }
@@ -44,6 +41,9 @@ cal_std <- function(data,
 #' This function helps to calibrate a sample using the output of the cal_std() function
 #' @param data Sample data from get_prob() function
 #' @param cal Calibration data from cal_std() function
+#' @param current EMP current in µA used during the measurement session
+#' @param dwell_time Spot dwell time
+#' @param accumulations Number of accumulations
 #' @export
 cal_prob <- function(data, 
                      cal,
