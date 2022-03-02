@@ -175,11 +175,10 @@ image_prob <- function(data,
 #' @importFrom dplyr select
 #' @export
 hist_prob <- function(data, 
-                      palette,
+                      palette = contrast,
                       bins = 50,
                       return_fig = FALSE){
   
-  if(missing(palette)) {palette = contrast}
   getPalette = colorRampPalette(palette)
   
   p1 <- data %>% 
