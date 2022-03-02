@@ -179,6 +179,7 @@ hist_prob <- function(data,
                       bins = 50,
                       return_fig = FALSE){
   
+  if(missing(palette)) {palette = contrast}
   getPalette = colorRampPalette(palette)
   
   p1 <- data %>% 
