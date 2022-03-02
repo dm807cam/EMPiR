@@ -99,7 +99,7 @@ get_bg <- function(data_path,
                    data_string){
   
   # Read data
-  bg_df <- data_frame(filename = dir(data_path, pattern = paste(data_string,"*",sep=""))) %>%
+  bg_df <- tibble(filename = dir(data_path, pattern = paste(data_string,"*",sep=""))) %>%
     mutate(file_contents = map(filename,      
                                ~ read_delim(file.path(data_path, .), col_names=F, delim="\t")) 
     ) %>% 
