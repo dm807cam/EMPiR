@@ -63,6 +63,8 @@ image_prob <- function(data,
       ggplot(aes(x, y)) +
       geom_raster(aes(fill = z)) +
       theme_empir() +
+      theme(text = element_text(family ="Times"),
+            title =element_text(family ="Times")) +
       coord_fixed() +
       labs(fill=legend_name) +
       scale_x_continuous(expand = c(0, 0)) +
@@ -145,6 +147,8 @@ image_prob <- function(data,
       ggplot(aes(x, y)) +
       geom_raster(aes(fill = z)) +
       theme_empir() +
+      theme(text = element_text(family ="Times"),
+            title =element_text(family ="Times")) +
       coord_fixed() +
       labs(fill=legend_name) +
       scale_x_continuous(expand = c(0, 0)) +
