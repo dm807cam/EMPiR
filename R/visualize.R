@@ -156,7 +156,7 @@ image_prob <- function(data,
       scale_fill_gradientn(colors = palette, na.value = "black") +
       annotate("rect", xmin=sbar_bg_xmin, xmax=sbar_bg_xmax, ymin=sbar_bg_ymin, ymax=sbar_bg_ymax, fill = "black", alpha=0.8) +
       geom_linerange(mapping=aes(xmin=sbar_x_min, xmax=sbar_x_max, y=sbar_y), colour="white", size=2) +
-      annotate("text", label=bquote(.(sbar_text) ~ mu*"m"), x=mean(c(sbar_x_max,sbar_x_min)), y=sbar_text_pos, colour="white", size=3, fontface ="Times")
+      annotate("text", label=bquote(.(sbar_text) ~ mu*"m"), x=mean(c(sbar_x_max,sbar_x_min)), y=sbar_text_pos, colour="white", size=3)
   }
   
   print(p1)
