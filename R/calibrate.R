@@ -23,7 +23,6 @@ cal_std <- function(data,
   data <- inner_join(data, data_cal, by="std")
   
   lm_data <- lm(cal ~ counts, data = data)
-  
   A <- as.numeric(coef(lm_data)[2])
   
   if(!(missing(B))) {
@@ -34,7 +33,6 @@ cal_std <- function(data,
   
   return(c(A,B))
 }
-
 
 #' Calibrate sample
 #' 
@@ -53,6 +51,6 @@ cal_prob <- function(data,
   
   It <- current*dwell_time*accumulations
   
-  data$z <- (cal[1]/It) + (cal[2]/It) * (data$z/It)
+  data$z <- cal[2] + cal[1]  * data$z
   return(data)
 }
