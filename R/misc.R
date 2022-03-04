@@ -3,6 +3,8 @@
 theme_empir = function() {
   theme_void() %+replace%
     theme(
+      text = element_text(family ="Times"),
+      title =element_text(family ="Times"),
       legend.background = element_rect(color = NA, fill = "black"),  
       legend.key = element_rect(color = "white",  fill = "black"),  
       legend.key.size = unit(1.2, "lines"),  
@@ -34,6 +36,8 @@ theme_empir = function() {
 theme_black = function() {
   theme_grey() %+replace%
     theme(
+      text = element_text(family ="Times"),
+      title =element_text(family ="Times"),
       axis.line = element_blank(),  
       axis.text.x = element_text(size = 11*0.8, color = "white", lineheight = 0.9),  
       axis.text.y = element_text(size = 11*0.8, color = "white", lineheight = 0.9),  
