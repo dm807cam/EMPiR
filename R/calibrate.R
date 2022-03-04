@@ -53,6 +53,6 @@ cal_prob <- function(data,
   
   It <- current*dwell_time*accumulations
   
-  data$z <- (cal[1]/It) + (cal[2]/It) * (data$z/It)
+  data$z <- (cal[1]/It) + (cal[2]/It) * (data$z)
   return(data)
 }
