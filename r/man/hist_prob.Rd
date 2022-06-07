@@ -4,7 +4,7 @@
 \alias{hist_prob}
 \title{Plot histogram}
 \usage{
-hist_prob(data, palette, bins = 50, return_fig = FALSE)
+hist_prob(data, palette = contrast, bins = 50, return_fig = FALSE)
 }
 \arguments{
 \item{data}{Sample data from get_prob() function}

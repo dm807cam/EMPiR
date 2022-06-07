@@ -8,6 +8,11 @@
 #' @keywords get, import, sample  
 #' @importFrom readr read_delim
 #' @importFrom readr cols
+#' @importFrom tibble rowid_to_column
+#' @importFrom tidyr pivot_longer
+#' @importFrom dplyr relocate
+#' @importFrom dplyr mutate
+#' @importFrom dplyr across
 #' @export
 get_prob <- function(data_path, 
                      data_name, 
@@ -32,7 +37,6 @@ get_prob <- function(data_path,
     mutate(across(.cols = everything(), as.numeric))
   
   return(data)
-  
 }
 
 

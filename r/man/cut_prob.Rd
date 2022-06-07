@@ -4,12 +4,12 @@
 \alias{cut_prob}
 \title{Threshold filter}
 \usage{
-cut_prob(data, type = c("fixed", "quant"), cut_threshold)
+cut_prob(data, type = c("upper", "lower"), cut_threshold)
 }
 \arguments{
 \item{data}{Sample data from get_prob() function}
 
-\item{type}{Fixed or quantile threshold}
+\item{type}{Upper or lower threshold}
 
 \item{cut_threshold}{Defined threshold. Must be numeric}
 }

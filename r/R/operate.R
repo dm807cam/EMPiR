@@ -1,47 +1,47 @@
 #' Threshold filter
-#' 
+#'
 #' Remove all data points below a fixed or a quantile threshold.
 #' This function is helpful to remove noise around sample edges.
 #' Please refer to the vignette for more details.
 #' @param data Sample data from get_prob() function
-#' @param type Fixed or quantile threshold
+#' @param type Upper or lower threshold
 #' @param cut_threshold Defined threshold. Must be numeric
 #' @importFrom dplyr select
 #' @export
-cut_prob <- function(data, 
-                     type=c('fixed', 
-                            'quant'), 
+cut_prob <- function(data,
+                     type=c('upper',
+                            'lower'),
                      cut_threshold) {
-  
+
   match.arg(type)
-  
+
   if(missing(cut_threshold)) {
     stop("Please provide a threshold value.")
   }
-  
-  if(type == 'quant') {
-    data <- data %>% 
-      select(x,y,z) %>% 
-      mutate(z = replace(z, z < quantile(filter(data,z > 0)$z, prob = cut_threshold), 0))
+
+  if(type == 'upper') {
+    data <- data %>%
+      dplyr::select(x,y,z) %>%
+      mutate(z = replace(z, z > cut_threshold, 0))
   }
-  
-  if(type == 'fixed') {
-    data <- data %>% 
-      select(x,y,z) %>% 
+
+  if(type == 'lower') {
+    data <- data %>%
+      dplyr::select(x,y,z) %>%
       mutate(z = replace(z, z < cut_threshold, 0))
   }
-  
+
   # Sort data frame XYZ and make all columns numeric
-  data <- data %>% 
-    relocate(x,y,z) %>% 
+  data <- data %>%
+    relocate(x,y,z) %>%
     mutate(across(.cols = everything(), as.numeric))
-  
+
   return(data)
 }
 
 
 #' Smooth function
-#' 
+#'
 #' Applies a raster smoothing function to reduce noise.
 #' Please refer to the vignette for more details.
 #' @param data Sample data from get_prob() function
@@ -50,90 +50,90 @@ cut_prob <- function(data,
 #' @importFrom raster as.matrix
 #' @export
 smooth_prob <- function(data, fac) {
-  
+
   if(missing(fac)) {
     warning("No smoothing factor specififed. Standard factor of 3 used.")
     fac = 3
   }
-  
+
   # Convert data frame to raster and smooth raster
   r <- rasterFromXYZ(data)
   r <- disaggregate(r,fac)
-  r <- focal(r, w = matrix(1,fac,fac), mean, pad = T)
+  r <- focal(r, w = matrix(1,fac,fac), fun=max, pad=TRUE, padValue=0)
   r <- flip(r,2)
-  
+
   # Convert raster back to data frame
   data <- as.data.frame(as.matrix(r)) %>%
     rowid_to_column("y")
-  
+
   # Remove non-numerical from column names
   colnames(data) <- c("y",paste(seq_len(ncol(data)-1)))
-  
+
   # From wide to long format
   data <- pivot_longer(data,
                        -y,
                        names_to = 'x',
                        values_to ='z')
-  
+
   # Sort data frame XYZ and make all columns numeric
   data <- data %>%
     relocate(x,y,z) %>%
     mutate(across(.cols = everything(), as.numeric))
-  
+
   # Add column to data frame specifying smoothing factor
   data$smooth <- fac
-  
+
   return(data)
 }
 
 
 #' Flip function
-#' 
+#'
 #' Flip sample horizontally or vertically.
 #' @param data Sample data from get_prob() function
 #' @param flip_dir Flip horizontally 'h' or vertically 'v'
 #' @importFrom raster as.matrix
 #' @export
 flip_prob <- function(data, flip_dir=c('h','v')) {
-  
+
   match.arg(flip_dir)
-  
+
   if(flip_dir == 'h') {
     flip_dir = 'y'
   }
-  
+
   if(flip_dir == 'v') {
     flip_dir = 'x'
   }
-  
+
   # Convert data frame to raster and flip
   r <- rasterFromXYZ(data)
   r <- flip(r,flip_dir)
-  
+
   # Convert data frame to raster and smooth raster
-  data <- as.data.frame(as.matrix(r)) %>% 
+  data <- as.data.frame(as.matrix(r)) %>%
     rowid_to_column("y")
-  
+
   # Remove non-numerical from column names
   colnames(data) <- c("y",paste(seq_len(ncol(data)-1)))
-  
+
   # From wide to long format
-  data <- pivot_longer(data, 
-                       -y, 
-                       names_to = 'x', 
+  data <- pivot_longer(data,
+                       -y,
+                       names_to = 'x',
                        values_to ='z')
-  
+
   # Sort data frame XYZ and make all columns numeric
-  data <- data %>% 
-    relocate(x,y,z) %>% 
+  data <- data %>%
+    relocate(x,y,z) %>%
     mutate(across(.cols = everything(), as.numeric))
-  
+
   return(data)
 }
 
 
 #' Subset rectangle
-#' 
+#'
 #' Unfortunately R does not yet provide an option to manually subset ggplots by mouse select.
 #' This function allows the user to define two points between which a subset rectangle will be created.
 #' Input points are on a relative scale 0-100 rather than on an absolute
@@ -146,27 +146,27 @@ flip_prob <- function(data, flip_dir=c('h','v')) {
 #' @importFrom dplyr select
 #' @export
 subset_rect <- function(data, x1, x2, y1, y2) {
-  
+
   if(x2 > 100 | x1 > 100 | y2 > 100 | y1 > 100 |
      x2 < 0 | x1 < 0 | y2 < 0 | y1 < 0 ) {
     stop('Locators supplied have a wrong dimension.')
   }
-  
+
   # Rescale function
   rescale <- function(x) (x-min(x))/(max(x) - min(x)) * 100
-  
+
   # Add rescaled X and Y columns to data frame
-  data <- data %>% 
+  data <- data %>%
     mutate(x_rescaled = x,
-           y_rescaled = y) %>% 
-    mutate(across(x_rescaled:y_rescaled, rescale)) %>% 
+           y_rescaled = y) %>%
+    mutate(across(x_rescaled:y_rescaled, rescale)) %>%
     mutate(x = x,
            y = y,
            z = z)
-  
-  # Plot rescaled data 
-  p1 <- data %>% 
-    select(x_rescaled,y_rescaled,z) %>% 
+
+  # Plot rescaled data
+  p1 <- data %>%
+    select(x_rescaled,y_rescaled,z) %>%
     ggplot(aes(x_rescaled,y_rescaled)) +
     geom_raster(aes(fill = z)) +
     theme_empir() +
@@ -175,28 +175,28 @@ subset_rect <- function(data, x1, x2, y1, y2) {
     scale_y_continuous(expand = c(0, 0)) +
     scale_fill_gradientn(colors = contrast,
                          na.value = "black") +
-    geom_rect(aes(xmin=x1, xmax=x2, ymin=y1, ymax=y2), fill=NA, colour="red", size=1) 
-  
+    geom_rect(aes(xmin=x1, xmax=x2, ymin=y1, ymax=y2), fill=NA, colour="red", size=1)
+
   print(p1)
-  
+
   # Subset data frame and export
-  data <- data %>% 
-    filter(x_rescaled >= x1 & 
+  data <- data %>%
+    filter(x_rescaled >= x1 &
              x_rescaled <= x2 &
              y_rescaled >= y1 &
-             y_rescaled <= y2) %>% 
-    select(-y_rescaled, -x_rescaled) %>% 
+             y_rescaled <= y2) %>%
+    select(-y_rescaled, -x_rescaled) %>%
     mutate(x = x - min(x),
            y = y - min(y),
-           z = z) %>% 
+           z = z) %>%
     mutate(across(.cols = everything(), as.numeric))
-  
+
   return(data)
 }
 
 
 #' Subset line
-#' 
+#'
 #' Unfortunately R does not yet provide an option to manually subset ggplots by mouse select.
 #' This function allows the user to define two points between which a subset line will be created.
 #' Input points are on a relative scale 0-100 rather than on an absolute
@@ -210,27 +210,27 @@ subset_rect <- function(data, x1, x2, y1, y2) {
 #' @importFrom raster extract
 #' @export
 subset_line <- function(data, x1, x2, y1, y2) {
-  
+
   if(x2 > 100 | x1 > 100 | y2 > 100 | y1 > 100 |
      x2 < 0 | x1 < 0 | y2 < 0 | y1 < 0 ) {
     stop('Locators supplied have a wrong dimension.')
   }
-  
+
   # Rescale function
   rescale <- function(x) (x-min(x))/(max(x) - min(x)) * 100
-  
+
   # Add rescaled X and Y columns to data frame
-  data <- data %>% 
+  data <- data %>%
     mutate(x_rescaled = x,
-           y_rescaled = y) %>% 
-    mutate(across(x_rescaled:y_rescaled, rescale)) %>% 
+           y_rescaled = y) %>%
+    mutate(across(x_rescaled:y_rescaled, rescale)) %>%
     mutate(x = x,
            y = y,
            z = z)
-  
-  # Plot rescaled data 
-  p1 <- data %>% 
-    select(x_rescaled,y_rescaled,z) %>% 
+
+  # Plot rescaled data
+  p1 <- data %>%
+    select(x_rescaled,y_rescaled,z) %>%
     ggplot(aes(x_rescaled,y_rescaled)) +
     geom_raster(aes(fill = z)) +
     theme_empir() +
@@ -240,26 +240,26 @@ subset_line <- function(data, x1, x2, y1, y2) {
     scale_y_continuous(expand = c(0, 0)) +
     scale_fill_gradientn(colors = contrast,
                          na.value = "black") +
-    annotate("segment", x = x1, xend = x2, y = y1, yend = y2, colour="red", size=1) 
-  
+    annotate("segment", x = x1, xend = x2, y = y1, yend = y2, colour="red", size=1)
+
   print(p1)
-  
+
   # Create rescaled data frame
-  rescaled_data <- data %>% 
-    select(x_rescaled,y_rescaled,z) %>% 
+  rescaled_data <- data %>%
+    select(x_rescaled,y_rescaled,z) %>%
     mutate(x = x_rescaled,
            y = y_rescaled,
-           z = z) %>% 
+           z = z) %>%
     mutate(across(.cols = everything(), as.numeric))
-  
+
   # Convert data frame to raster and define spatial line
   r <- rasterFromXYZ(rescaled_data)
   lines <- spLines(rbind(c(x1,y1), c(x2,y2)))
   rline <- as.data.frame(extract(r, lines)[[1]])
-  
+
   # Add point ID to data frame
-  data <- rline %>% 
+  data <- rline %>%
     mutate(n = seq_len(length(z)))
-  
+
   return(data)
 }

@@ -11,7 +11,7 @@ cal_prob(data, cal, current, dwell_time, accumulations)
 
 \item{cal}{Calibration data from cal_std() function}
 
-\item{current}{EMP current in microampere used in the measurement session}
+\item{current}{EMP current in µA used during the measurement session}
 
 \item{dwell_time}{Spot dwell time}
 
